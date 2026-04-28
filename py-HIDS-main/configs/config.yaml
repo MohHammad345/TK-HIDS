@@ -1,0 +1,113 @@
+agent:
+  name: "TK-HIDS"
+  poll_interval_sec: 2
+
+integrity:
+  enabled: true
+  paths:
+    - "./watched"
+  hash_algo: "sha256"
+  baseline_file: "./data/baseline.json"
+
+processWatch:
+  enabled: true
+  suspicious_names:
+    - "mimikatz"
+    - "psexec"
+    - "nc"
+    - "netcat"
+    - "powershell"
+    - "cmd"
+
+netWatch:
+  enabled: true
+  watch_outbound: true
+  suspicious_ports:
+    - 4444
+    - 1337
+    - 6667
+    - 9001
+
+logging:
+  alerts_file: "./logs/alerts.jsonl"
+  dedupe_sec: 10
+
+
+processWatch:
+  enabled: true
+  suspicious_names:
+    - "mimikatz"
+    - "psexec"
+    - "nc"
+    - "netcat"
+    - "powershell"
+    - "cmd"
+  allow_names:
+    - "bash"
+    - "firefox"
+    - "Web Content"
+    - "Utility Process"
+    - "RDD Process"
+    - "Socket Process"
+    - "crashhelper"
+    - "glxtest"
+    - "snap"
+
+netWatch:
+  enabled: true
+  watch_outbound: true
+  suspicious_ports:
+    - 4444
+    - 1337
+    - 6667
+    - 9001
+  allow_remote_ports:
+    - 80
+    - 443
+    - 53
+
+risk:
+  enabled: true
+  base_scores:
+    integrity:
+      file_added: 40
+      file_modified: 70
+      file_removed: 60
+    process:
+      new_process: 5
+      suspicious_process_name: 80
+    network:
+      new_connection: 5
+      suspicious_remote_port: 75
+    anomaly:
+      process_burst: 50
+      connection_burst: 55
+  mitre_weights:
+    T1565.001: 15
+    T1070: 10
+    T1059: 15
+    T1071: 10
+  severity_thresholds:
+    medium: 40
+    high: 70
+
+anomaly:
+  enabled: true
+  window_sec: 60
+  process_burst_threshold: 10
+  network_burst_threshold: 20
+
+mitre:
+  mappings:
+    integrity:
+      file_added: ["T1070"]  # Indicator Removal on Host (approx)
+      file_modified: ["T1565.001"]  # Data manipulation: Stored Data Manipulation
+      file_removed: ["T1070"] # Indicator Removal on Host (broad/approx)
+    process:
+      suspicious_process_name: ["T1059"] # Command and Scripting Intrepreter
+      new_connection: [] # noisy/normal by deflt
+
+    network:
+      suspicious_remote_port: ["T1071"] # Application layer protocol (broad)
+      new_connection: []  # noisy/normal by deflt
+
