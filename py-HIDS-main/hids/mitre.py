@@ -1,4 +1,4 @@
-# Author: TK
+# Author: Mohammad Hammad Asif
 # Date: 24-02-2026
 # Purpose: code which modifies alerts with MITRE ATT&CK technique IDs based
 # on alert type and reason, adds threat intelligence context to alerts.
