@@ -1,4 +1,4 @@
-# Author: TK
+# Author: Mohammad Hammad Asif
 # Date: 25-02-2026
 # Purpose: detects anomaly burst (process and network burst)
 
