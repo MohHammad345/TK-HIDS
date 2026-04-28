@@ -1,4 +1,4 @@
-# AUTHOR: TK
+# AUTHOR: Mohammad Hammad Asif
 # DATE: 20/02/2026
 # Purpose: Handle structured alert logging in JSONL
 """
