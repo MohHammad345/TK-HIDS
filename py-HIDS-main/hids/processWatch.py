@@ -1,4 +1,4 @@
-# Author: TK
+# Author: Mohammad Hammad Asif
 # Date: 22-02-2026
 # Purpose Monitors new processes and flags sus names.
 """
