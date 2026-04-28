@@ -1,4 +1,4 @@
-# Author: TK
+# Author: Mohammad Hammad Asif
 # Date: 22/02/2026
 # Purpose: Load YAML config and map it to structured data classes
 """
